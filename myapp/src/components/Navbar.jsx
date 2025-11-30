@@ -82,7 +82,7 @@ const Navbar = () => {
       </ul>
 
       <div className='flex items-center gap-6'>
-        {/* SEARCH - wrapper is relative (already nested) */}
+      
         <div className='relative'>
           <button
             className='p-1'
@@ -92,10 +92,10 @@ const Navbar = () => {
             <img src={searchIcon} className='w-5 cursor-pointer' alt='search' />
           </button>
 
-          {/* dropdown anchored to navbar via parent .relative (outermost) */}
+          
           <form
             onSubmit={submitSearch}
-            // top-9 aligns the dropdown neatly under the icon; z-50 avoids clipping
+            
             className={`absolute right-0 top-9 z-50 transition-all ${searchVisible ? 'block' : 'hidden'}`}
           >
             <div className='flex items-center gap-2 bg-white border rounded px-3 py-2 shadow-lg min-w-[220px] max-w-xs'>
