@@ -1,7 +1,7 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
-import Collection from './pages/Collection'
+import Collection from './pages/collection'
 import  About from './pages/about'
 import Product from './pages/product'
 import Login from './pages/login'
@@ -23,6 +23,7 @@ const App = () => {
        <Route path='./login' element={<Login />} />
      </Routes>
      <Footer />
+     
 
     </div>
   )
