@@ -8,6 +8,7 @@ import menuIcon from '../assets/menu.png'
 import dropDown from '../assets/down-arrow.png'
 
 const Navbar = () => {
+  // make component-level state
   const [Visible, setVisible] = useState(false)
   const [searchVisible, setSearchVisible] = useState(false)
   const [searchTerm, setSearchTerm] = useState('')
@@ -16,25 +17,32 @@ const Navbar = () => {
   const navigate = useNavigate()
   const location = useLocation()
 
-  // If there's a ?q= in the URL, populate the input (keeps input synced when user navigates)
+  // populate input from ?q= when URL changes
   useEffect(() => {
     const params = new URLSearchParams(location.search)
     const q = params.get('q') || ''
     setSearchTerm(q)
   }, [location.search])
 
-  // Focus the input when it becomes visible
+  // focus when dropdown opens
   useEffect(() => {
-    if (searchVisible && inputRef.current) {
-      inputRef.current.focus()
-    }
+    if (searchVisible && inputRef.current) inputRef.current.focus()
   }, [searchVisible])
 
-  // Navigate to home with query param
+  // close search on Escape
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key === 'Escape') {
+        setSearchVisible(false)
+      }
+    }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [])
+
   const submitSearch = (e) => {
     if (e) e.preventDefault()
     const q = (searchTerm || '').trim()
-    // If empty, just navigate home without query param
     if (q === '') {
       navigate('/', { replace: false })
     } else {
@@ -42,14 +50,13 @@ const Navbar = () => {
       params.set('q', q)
       navigate(`/?${params.toString()}`)
     }
-  
     setSearchVisible(false)
-    // close mobile menu if open
     setVisible(false)
   }
 
   return (
-    <div className='flex items-center justify-between py-5 font-medium cursor-pointer'>
+    // make navbar relative so children absolute dropdowns are positioned correctly
+    <div className='relative flex items-center justify-between py-5 font-medium cursor-pointer'>
       <Link to='/'><img src={logo} className='w-8' alt='logo' /></Link>
 
       <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
@@ -75,7 +82,7 @@ const Navbar = () => {
       </ul>
 
       <div className='flex items-center gap-6'>
-        
+        {/* SEARCH - wrapper is relative (already nested) */}
         <div className='relative'>
           <button
             className='p-1'
@@ -85,18 +92,19 @@ const Navbar = () => {
             <img src={searchIcon} className='w-5 cursor-pointer' alt='search' />
           </button>
 
-          
+          {/* dropdown anchored to navbar via parent .relative (outermost) */}
           <form
             onSubmit={submitSearch}
-            className={`absolute right-0 top-full mt-2 transition-all ${searchVisible ? 'block' : 'hidden'}`}
+            // top-9 aligns the dropdown neatly under the icon; z-50 avoids clipping
+            className={`absolute right-0 top-9 z-50 transition-all ${searchVisible ? 'block' : 'hidden'}`}
           >
-            <div className='flex items-center gap-2 bg-white border rounded px-2 py-1 shadow-sm'>
+            <div className='flex items-center gap-2 bg-white border rounded px-3 py-2 shadow-lg min-w-[220px] max-w-xs'>
               <input
                 ref={inputRef}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 placeholder='Search products...'
-                className='outline-none text-sm'
+                className='outline-none text-sm w-full'
                 aria-label='Search products'
               />
               <button
@@ -110,6 +118,7 @@ const Navbar = () => {
           </form>
         </div>
 
+        {/* profile */}
         <div className='group relative'>
           <img src={profileIcon} className='w-5 cursor-pointer' alt='profile' />
           <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
