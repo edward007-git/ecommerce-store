@@ -42,7 +42,7 @@ const Navbar = () => {
       params.set('q', q)
       navigate(`/?${params.toString()}`)
     }
-    // Optionally hide the search input on submit for small screens
+  
     setSearchVisible(false)
     // close mobile menu if open
     setVisible(false)
@@ -85,7 +85,7 @@ const Navbar = () => {
             <img src={searchIcon} className='w-5 cursor-pointer' alt='search' />
           </button>
 
-          {/* Inline search box */}
+          
           <form
             onSubmit={submitSearch}
             className={`absolute right-0 top-full mt-2 transition-all ${searchVisible ? 'block' : 'hidden'}`}
