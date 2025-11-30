@@ -8,14 +8,14 @@ const Collection = () => {
   const { products = [] } = useContext(ShopContext); // default to [] to avoid undefined
   const [showFilter, setShowFilter] = useState(false);
 
-  // filter state
+  
   const [category, setCategory] = useState([]);
   const [subcategory, setSubCategory] = useState([]);
 
-  // sort state
+
   const [sort, setSort] = useState("relevant"); // "relevant" | "low-high" | "high-low"
 
-  // Toggle handlers (use event.currentTarget.value for safety)
+  
   const toggleCategory = (e) => {
     const val = e.currentTarget.value;
     setCategory((prev) => (prev.includes(val) ? prev.filter((i) => i !== val) : [...prev, val]));
