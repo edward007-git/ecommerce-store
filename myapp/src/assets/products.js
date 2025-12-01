@@ -69,7 +69,7 @@ export const products = [
     name: "Kid Sports Shorts",
     price: 30,
     image: shoeImage,
-    bestSeller: false,
+    bestSeller: true,
     category: "kids",
     type: "bottomwear"
   },
@@ -78,7 +78,7 @@ export const products = [
     name: "Men Polo Shirt",
     price: 60,
     image: poloImage,
-    bestSeller: false,
+    bestSeller: true,
     category: "men",
     type: "topwear"
   },
