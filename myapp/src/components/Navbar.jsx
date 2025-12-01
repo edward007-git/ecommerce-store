@@ -29,7 +29,7 @@ const Navbar = () => {
     if (searchVisible && inputRef.current) inputRef.current.focus()
   }, [searchVisible])
 
-  // close search on Escape
+  // close on ESC key
   useEffect(() => {
     const onKey = (e) => {
       if (e.key === 'Escape') {
@@ -55,7 +55,7 @@ const Navbar = () => {
   }
 
   return (
-    // make navbar relative so children absolute dropdowns are positioned correctly
+  
     <div className='relative flex items-center justify-between py-5 font-medium cursor-pointer'>
       <Link to='/'><img src={logo} className='w-8' alt='logo' /></Link>
 
