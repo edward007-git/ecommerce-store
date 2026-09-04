@@ -119,13 +119,13 @@ const Navbar = () => {
         </div>
 
         {/* profile */}
-        <div className='group relative'>
-          <img src={profileIcon} className='w-5 cursor-pointer' alt='profile' />
-          <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
-            <div className='flex flex-col gap-2 w-36 py-3 px-5 bg-slate-800 text-gray-500 rounded'>
-              <p className='cursor-pointer hover:text-black'>My Profile</p>
-              <p className='cursor-pointer hover:text-black'>Orders</p>
-              <p className='cursor-pointer hover:text-black'>Logout</p>
+        <div className='group relative z-50'>
+          <Link to='/login'><img src={profileIcon} className='w-5 cursor-pointer' alt='profile' /></Link>
+          <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4 z-50'>
+            <div className='flex flex-col gap-3 w-36 py-4 px-5 bg-white border border-gray-200 text-gray-600 rounded shadow-lg'>
+              <Link to='/profile' className='cursor-pointer hover:text-black uppercase text-xs tracking-wider'>My Profile</Link>
+              <Link to='/orders' className='cursor-pointer hover:text-black uppercase text-xs tracking-wider'>Orders</Link>
+              <Link to='/login' className='cursor-pointer hover:text-black uppercase text-xs tracking-wider'>Logout</Link>
             </div>
           </div>
         </div>

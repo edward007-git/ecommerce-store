@@ -27,7 +27,7 @@ const footer = () => {
         <p className='text-xl font-medium mb-2'>Contact Info</p>
       <ul className='flex flex-col gap-1 text-gray-600'>
        <li>+1-232-790-5391</li>
-       <li>contact@fzexsyou.com</li>
+       <li>contact@zexs.com</li>
       </ul>
       </div>
 
@@ -35,7 +35,7 @@ const footer = () => {
    
     <div>
       <hr />
-      <p className='py-5 text-sm text-center'>Copyright 2025@ forever.com - ALL RIGHT RESERVED</p>
+      <p className='py-5 text-sm text-center'>Copyright 2025@ zexs.com - ALL RIGHT RESERVED</p>
         
     </div>
     </div>
